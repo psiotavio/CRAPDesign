@@ -1,0 +1,153 @@
+---
+import Base from '../layouts/Base.astro';
+import Spec from '../components/Spec.astro';
+import { GRADES, LEVELS, ORDER, PRINCIPLES } from '../data/content';
+---
+
+<Base title="Progresso — CRAP Design" current="progresso">
+  <section class="field field-c page-head" aria-labelledby="h-prog">
+    <div class="wrap">
+      <div class="ph-grid">
+        <div>
+          <h1 id="h-prog">Seu progresso</h1>
+          <p class="lead">Errar não tira pontos.</p>
+        </div>
+        <div class="xp-box">
+          <div class="big"><span data-xp>0</span><small>XP</small></div>
+          <p class="slug" style="margin:6px 0 10px">Nível <span data-lvl-n>1</span> · <span data-lvl-title>Estagiário</span></p>
+          <div class="lvl-bar light" role="progressbar" aria-label="Progresso até o próximo nível" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-lvl-bar>
+            <i style="--s:0"></i>
+          </div>
+          <p class="slug" style="margin:8px 0 0" data-lvl-next>300 XP para Designer Júnior</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="field" style="padding-top:clamp(32px,4vw,56px)">
+    <div class="wrap read">
+      <header>
+        <h2>Níveis</h2>
+      </header>
+      <div class="stack">
+        <div>
+          <Spec
+            caption="Tabela de níveis"
+            head={['Nível', 'XP mínimo', 'Título']}
+            rowAttr={(i) => ({ 'data-level-row': String(i + 1) })}
+            rows={LEVELS.map((l) => [String(l.n), l.min.toLocaleString('pt-BR'), l.title])}
+          />
+          <p class="slug" style="margin-top:10px;color:var(--ink-2)">A linha em amarelo é o seu nível agora.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="field" style="padding-top:0">
+    <div class="wrap read">
+      <header>
+        <h2>Como ganhar XP</h2>
+        <p class="slug">Máximo: ~2.160 XP</p>
+      </header>
+      <div class="stack">
+        <Spec
+          caption="Tabela de XP"
+          head={['Ação', 'XP']}
+          rows={[
+            ['Missão concluída', '100'],
+            ['Bônus por missão sem dica', '+25'],
+            ['Revisar a missão de um colega', '+30'],
+            ['Bônus por layout completo (4 missões)', '+100'],
+          ]}
+        />
+        <div class="peer-box">
+          <p><strong>Revisar um colega</strong> rende XP. Aqui o botão simula.</p>
+          <div class="actions" style="margin-top:0">
+            <button type="button" class="btn" data-review-peer>Revisei um colega · +30 XP</button>
+            <span class="slug"><span data-peer-count>0</span> revisões simuladas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="field" style="padding-top:0">
+    <div class="wrap read">
+      <header>
+        <h2>Badges</h2>
+      </header>
+      <div class="stack">
+        <div>
+          <p>Bronze, Prata e Ouro: o princípio concluído em 1, 2 ou 3 layouts.</p>
+          <div class="badge-grid" role="table" aria-label="Badges por princípio e grau">
+            <span class="h"></span>
+            {GRADES.map((g) => <span class="h">{g}</span>)}
+            {
+              ORDER.map((p) => (
+                <>
+                  <span class="rowh">
+                    <span class="patch" data-ink={PRINCIPLES[p].ink} />
+                    {PRINCIPLES[p].name}
+                  </span>
+                  {GRADES.map((g, gi) => (
+                    <span class="badge" data-badge={`${p}-${gi}`} data-grade={gi}>
+                      <i></i>
+                      <span>
+                        {PRINCIPLES[p].name} {g}
+                      </span>
+                    </span>
+                  ))}
+                </>
+              ))
+            }
+          </div>
+          <p style="margin-top:22px"><strong>Especiais.</strong></p>
+          <div class="specials">
+            <div class="special-badge" data-special="olho">
+              <b>Olho Clínico</b>
+              <span>Um layout inteiro sem dica</span>
+              <span class="slug">Bloqueado</span>
+            </div>
+            <div class="special-badge" data-special="mentor">
+              <b>Mentor</b>
+              <span>5 revisões de colegas</span>
+              <span class="slug">Bloqueado</span>
+            </div>
+            <div class="special-badge" data-special="album">
+              <b>Álbum Completo</b>
+              <span>Todas as figurinhas coladas</span>
+              <span class="slug">Bloqueado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="field" style="padding-top:0">
+    <div class="wrap read">
+      <header>
+        <h2>Progresso da turma</h2>
+      </header>
+      <div class="stack">
+        <div>
+          <p>A turma progride junta, sem placar individual.</p>
+          <div class="coletivo">
+            <div class="colorbar" role="img" aria-label="Exemplo: 87 de 120 figurinhas coladas pela turma">
+              <i class="c" style="--w:18"></i><i class="m" style="--w:18"></i><i class="y" style="--w:18"></i><i class="k" style="--w:18.5"></i>
+            </div>
+            <p class="slug" style="margin:0;color:var(--ink-2)">Exemplo ilustrativo da proposta: 87 de 120 figurinhas coladas</p>
+          </div>
+        </div>
+        <div class="reset-box">
+          <button type="button" class="link-btn" data-reset>Recomeçar do zero</button>
+          <p class="quiet" style="margin:6px 0 0">Apaga missões, XP e legendas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    import '../scripts/progress';
+  </script>
+</Base>

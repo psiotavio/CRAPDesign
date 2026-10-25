@@ -1,0 +1,97 @@
+---
+import '@fontsource-variable/archivo/wdth.css';
+import '@fontsource-variable/source-serif-4/opsz.css';
+import '@fontsource-variable/source-serif-4/opsz-italic.css';
+import '@fontsource-variable/spline-sans-mono';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  current?: 'home' | 'missoes' | 'album' | 'progresso' | 'proposta';
+  mission?: string;
+}
+const {
+  title,
+  description = 'Oficina gamificada de design: cada participante conserta layouts quebrados com uma missão por princípio CRAP e cola o antes e o depois num álbum.',
+  current,
+  mission,
+} = Astro.props;
+
+const links = [
+  { key: 'home', href: '/', label: 'Início' },
+  { key: 'missoes', href: '/missoes', label: 'Missões' },
+  { key: 'album', href: '/album', label: 'Álbum' },
+  { key: 'progresso', href: '/progresso', label: 'Progresso' },
+  { key: 'proposta', href: '/proposta', label: 'Proposta' },
+];
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body data-mission={mission}>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <symbol id="reg" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="7.5" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+        <circle cx="12" cy="12" r="3" fill="currentColor"></circle>
+        <path d="M12 0v24M0 12h24" stroke="currentColor" stroke-width="1.5"></path>
+      </symbol>
+    </svg>
+
+    <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="nav">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="CRAP Design, início">
+          <svg class="reg" aria-hidden="true"><use href="#reg"></use></svg>
+          <span>CRAP Design</span>
+        </a>
+        <nav aria-label="Principal">
+          <ul>
+            {
+              links.map((l) => (
+                <li>
+                  <a href={l.href} aria-current={current === l.key ? 'page' : undefined}>
+                    {l.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+        <a class="xp-chip" href="/progresso" data-xp-chip title="Seu nível e XP">
+          <span data-chip-level>Nível 1</span>
+          <span class="slug"><span data-chip-xp>0</span> XP</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <slot />
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <div class="colorbar" aria-hidden="true"><i class="c"></i><i class="m"></i><i class="y"></i><i class="k"></i></div>
+        <div class="row slug">
+          <span>CRAP Design · OS 001</span>
+          <span>24.10.2026 · Otávio</span>
+        </div>
+      </div>
+    </footer>
+
+    <p class="toast" role="status" aria-live="polite" data-toast></p>
+
+    <script>
+      import { renderChip } from '../scripts/game';
+      renderChip();
+    </script>
+  </body>
+</html>

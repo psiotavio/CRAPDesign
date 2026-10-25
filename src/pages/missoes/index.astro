@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+import Layout from '../../components/Layout.astro';
+import { LAYOUT_INFO, MISSIONS, PRINCIPLES, missionsOf, type LayoutId } from '../../data/content';
+
+const layoutIds: LayoutId[] = ['flyer', 'login', 'product'];
+const slug = (id: string) => id.replace('.', '-');
+---
+
+<Base title="Missões — CRAP Design" current="missoes">
+  <section class="field page-head" aria-labelledby="h-map">
+    <div class="wrap">
+      <div class="ph-grid">
+        <div>
+          <h1 id="h-map">Mapa de missões</h1>
+          <p class="lead">3 layouts, 4 missões cada. Ordem fixa: P, A, R, C.</p>
+        </div>
+        <div class="ph-side">
+          <p class="slug" data-map-summary>0 de 12 missões validadas</p>
+          <div class="lvl-bar light" role="progressbar" aria-label="Missões validadas" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0" data-map-bar>
+            <i style="--s:0"></i>
+          </div>
+          <a class="btn" href="/missoes/1-P" data-next>Começar pela missão 1.P</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="field" style="padding-top:clamp(32px,4vw,56px)">
+    <div class="wrap">
+      {
+        layoutIds.map((id) => (
+          <div class="map-row" data-map-layout={id}>
+            <header>
+              <h2>
+                {LAYOUT_INFO[id].n}. {LAYOUT_INFO[id].name}
+              </h2>
+              <p class="slug">
+                {LAYOUT_INFO[id].level} · <span data-layout-count>0/4</span> missões
+              </p>
+            </header>
+            <ol class="mtiles">
+              {missionsOf(id).map((m) => (
+                <li>
+                  <a class="mtile" href={`/missoes/${slug(m.id)}`} data-tile={m.id} data-status="open">
+                    <span class="mt-ink" data-ink={PRINCIPLES[m.p].ink} aria-hidden="true"></span>
+                    <span class="thumb" aria-hidden="true">
+                      <Layout id={id} stage={(m.stage - 1) as 0 | 1 | 2 | 3} />
+                    </span>
+                    <b>
+                      {m.id} · {m.name}
+                    </b>
+                    <span class="slug">
+                      {PRINCIPLES[m.p].name} · <span data-tile-status>aberta</span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        ))
+      }
+
+      <p class="slug" style="margin-top:36px;color:var(--ink-2)">
+        {MISSIONS.filter((m) => m.draft).length} missões em rascunho (login e produto).
+      </p>
+    </div>
+  </section>
+
+  <script>
+    import '../../scripts/map';
+  </script>
+</Base>

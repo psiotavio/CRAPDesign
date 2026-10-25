@@ -1,0 +1,307 @@
+---
+import Base from '../../layouts/Base.astro';
+import Layout from '../../components/Layout.astro';
+import Spec from '../../components/Spec.astro';
+import PropostaNav from '../../components/PropostaNav.astro';
+import { LAYOUTS } from '../../data/layouts';
+import {
+  LAYOUT_INFO,
+  LEVELS,
+  PLANTED,
+  PRINCIPLES,
+  missionsOf,
+  type LayoutId,
+} from '../../data/content';
+
+const layoutIds: LayoutId[] = ['flyer', 'login', 'product'];
+const flyerMissions = missionsOf('flyer');
+void Layout; void LAYOUTS; void LAYOUT_INFO; void LEVELS; void PLANTED; void PRINCIPLES; void flyerMissions; void layoutIds;
+---
+
+<Base title="Proposta: a atividade — CRAP Design" current="proposta">
+  <section class="field page-head" aria-labelledby="h-prop">
+    <div class="wrap">
+      <div class="ph-grid">
+        <div>
+          <h1 id="h-prop">Proposta: a atividade</h1>
+          <p class="lead">Layouts, missões, álbum, progressão e validação.</p>
+        </div>
+      </div>
+      <PropostaNav current="atividade" />
+    </div>
+  </section>
+
+      <section class="field" id="layouts" aria-labelledby="h-layouts">
+        <div class="wrap">
+          <div class="bench-head" style="margin-bottom:0">
+            <h2 id="h-layouts">Os layouts quebrados</h2>
+            <p>
+              São três layouts em dificuldade crescente, e cada um viola os quatro princípios de propósito. Cada
+              problema é plantado de forma isolável: uma missão corrige uma dimensão sem exigir que as outras já
+              estejam resolvidas.
+            </p>
+          </div>
+
+          <div class="broken">
+            {
+              layoutIds.map((id) => {
+                const spec = LAYOUTS[id];
+                const info = LAYOUT_INFO[id];
+                return (
+                  <figure data-layout={id}>
+                    <div class="trim" data-pins={id}>
+                      <div class="sheet">
+                        <Layout id={id} stage={0} label={`${info.name}, versão quebrada, com os problemas numerados`} />
+                      </div>
+                      {PLANTED[id].map((pl) => (
+                        <span
+                          class="pin num"
+                          data-ink={PRINCIPLES[pl.p].ink}
+                          data-pin={`${id}-${pl.n}`}
+                          style={`left:${(pl.x / spec.w) * 100}%;top:${(pl.y / spec.h) * 100}%`}
+                          aria-hidden="true"
+                        >
+                          {pl.n}
+                        </span>
+                      ))}
+                    </div>
+                    <figcaption>
+                      <h3>{info.name}</h3>
+                      <p class="slug">{info.level} · problemas plantados</p>
+                      <ol class="callouts">
+                        {PLANTED[id].map((pl) => (
+                          <li data-callout={`${id}-${pl.n}`} tabindex="0">
+                            <span class="num" data-ink={PRINCIPLES[pl.p].ink}>{pl.n}</span>
+                            <span>
+                              {pl.text}
+                              <span class="why">{PRINCIPLES[pl.p].name}</span>
+                            </span>
+                          </li>
+                        ))}
+                      </ol>
+                    </figcaption>
+                  </figure>
+                );
+              })
+            }
+          </div>
+
+          <div class="note">
+            <p>
+              <strong>O layout evolui de missão em missão.</strong> O “antes” de uma missão é o estado deixado pela
+              missão anterior. Assim, o “depois” da última missão é o redesign completo, e o álbum conta a história da
+              transformação passo a passo.
+            </p>
+            <p class="slug" style="color:var(--ink-2)">
+              Ilustrações autorais e fictícias, feitas para a oficina. Não são trabalhos de participantes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="field" id="anatomia" aria-labelledby="h-anatomia" style="padding-top:0">
+        <div class="wrap read">
+          <header>
+            <h2 id="h-anatomia">Anatomia de uma missão</h2>
+          </header>
+          <div class="stack">
+            <div>
+              <p>
+                Cada layout tem quatro missões, sempre na ordem{' '}
+                <strong>Proximidade → Alinhamento → Repetição → Contraste</strong>. É a ordem em que Robin Williams
+                apresenta os princípios, e vai da estrutura (agrupar, organizar) para o estilo (consistência,
+                hierarquia). Contraste fica por último porque depende dos grupos já definidos.
+              </p>
+              <p>Cada cartão de missão tem sempre os mesmos campos:</p>
+              <ul class="fields-list">
+                <li><strong>Nome e princípio</strong><span>ex.: Missão 1.P, “Juntando as peças”</span></li>
+                <li><strong>Briefing</strong><span>uma situação de cliente que justifica a tarefa</span></li>
+                <li>
+                  <strong>Critérios de conclusão</strong><span>checklist objetivo, que um colega consegue conferir</span>
+                </li>
+                <li>
+                  <strong>Recompensa</strong><span>XP, progresso no badge do princípio e o par de figurinhas</span>
+                </li>
+                <li>
+                  <strong>Dica</strong><span>opcional; usá-la tira o bônus de “sem dica”</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 style="margin-bottom:14px">Exemplo completo: as 4 missões do flyer</h3>
+              <Spec
+                caption="Missões do flyer"
+                head={['Missão', 'Briefing', 'Critérios de conclusão']}
+                rows={flyerMissions.map((m) => [
+                  `${m.id} · ${m.name}`,
+                  `“${m.briefing}”`,
+                  m.criteria.map((c) => c.charAt(0).toUpperCase() + c.slice(1)),
+                ])}
+              />
+              <p class="quiet" style="margin-top:18px">
+                Dicas de exemplo: na Proximidade, “aperte os olhos: quantas manchas você vê?”; no Contraste, “se for
+                diferente, que seja muito diferente”. Os layouts 2 e 3 seguem o mesmo molde, com critérios adaptados
+                ao contexto (ex.: na tela de login, rótulo a no máximo 8 px do campo).
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="field field-y" id="album" aria-labelledby="h-album">
+        <div class="wrap">
+          <div class="bench-head" style="margin-bottom:clamp(24px,3vw,40px)">
+            <h2 id="h-album">O álbum de figurinhas</h2>
+            <p>
+              O álbum é a recompensa e, ao mesmo tempo, o registro do aprendizado. Cada missão validada libera duas
+              figurinhas, o <strong>antes</strong> e o <strong>depois</strong>, que só podem ser coladas juntas, lado a
+              lado, no espaço daquela missão. <a href="/album">Ver o álbum no protótipo</a>.
+            </p>
+          </div>
+          <div class="cols3">
+              <div>
+                <h3>Estrutura</h3>
+                <ul>
+                  <li><strong>Capa:</strong> nome do participante e o nível atual</li>
+                  <li>
+                    <strong>Uma página por layout</strong> (3 páginas): 4 espaços de par, na ordem P, A, R, C, mais 1
+                    espaço para a figurinha especial
+                  </li>
+                  <li><strong>Página final, Hall da Fama:</strong> os badges conquistados</li>
+                </ul>
+                <p class="quiet" style="margin-top:10px">No total são 24 figurinhas comuns (3 layouts × 4 pares × 2 figurinhas) e 3 especiais.</p>
+              </div>
+              <div>
+                <h3>Regras de colagem</h3>
+                <ol>
+                  <li>A figurinha só é liberada depois da validação da missão.</li>
+                  <li>O par é colado junto: antes à esquerda, depois à direita.</li>
+                  <li>
+                    Embaixo de cada par, o participante escreve uma linha: <strong>“o que mudou e por quê”</strong>. É a
+                    parte reflexiva da atividade, e o que transforma o álbum em evidência de aprendizagem.
+                  </li>
+                  <li>
+                    Ao completar as 4 missões de um layout, ganha a <strong>figurinha especial brilhante</strong>: o
+                    layout original ao lado do redesign final.
+                  </li>
+                </ol>
+              </div>
+              <div>
+                <h3>Por que o álbum funciona</h3>
+                <ul>
+                  <li>Lendo a página da esquerda para a direita, dá para ver o layout melhorando princípio por princípio.</li>
+                  <li>O espaço vazio com a silhueta e o nome da missão mostra o que falta e convida a completar.</li>
+                  <li>O álbum terminado vira portfólio: o participante leva para casa e o professor pode avaliá-lo.</li>
+                </ul>
+              </div>
+            </div>
+        </div>
+      </section>
+
+
+
+      <section class="field" id="progressao" aria-labelledby="h-prog" style="padding-top:0">
+        <div class="wrap read">
+          <header>
+            <h2 id="h-prog">Sistema de progressão</h2>
+            <p class="slug">Máximo possível: cerca de 2.160 XP</p>
+          </header>
+          <div class="stack">
+            <p>
+              O participante acumula XP por missão, sobe de nível com títulos de carreira em design e ganha badges por
+              princípio. O máximo possível é cerca de 2.160 XP, então o último nível exige quase tudo sem dica e
+              revisões de colegas.
+            </p>
+            <div>
+              <h3 style="margin-bottom:14px">XP</h3>
+              <Spec
+                caption="Tabela de XP"
+                head={['Ação', 'XP']}
+                rows={[
+                  ['Missão concluída', '100'],
+                  ['Bônus por missão sem dica', '+25'],
+                  ['Revisar a missão de um colega', '+30'],
+                  ['Bônus por layout completo (4 missões)', '+100'],
+                ]}
+              />
+            </div>
+            <div>
+              <h3 style="margin-bottom:14px">Níveis</h3>
+              <Spec
+                caption="Tabela de níveis"
+                head={['Nível', 'XP mínimo', 'Título']}
+                rows={LEVELS.map((l) => [String(l.n), l.min.toLocaleString('pt-BR'), l.title])}
+              />
+            </div>
+            <div>
+              <h3 style="margin-bottom:14px">Badges</h3>
+              <ul>
+                <li><strong>Por princípio, em três graus:</strong> Bronze ao concluir o princípio em 1 layout, Prata em 2, Ouro em 3. São 12 badges (4 princípios × 3 graus).</li>
+                <li><strong>Especiais:</strong> Olho Clínico (um layout inteiro sem dica), Mentor (5 revisões de colegas), Álbum Completo.</li>
+              </ul>
+            </div>
+            <div>
+              <h3 style="margin-bottom:14px">Ranking: progresso coletivo em vez de placar individual</h3>
+              <p>
+                Uma barra da turma (“a turma já colou 87 de 120 figurinhas”) estimula sem expor quem está atrás. Placar
+                individual pode desmotivar iniciantes, então fica opcional.
+              </p>
+              <p><a href="/progresso">Ver seu próprio nível e badges no protótipo</a>.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="field" id="validacao" aria-labelledby="h-val" style="padding-top:0">
+        <div class="wrap read">
+          <header>
+            <h2 id="h-val">Validação das missões</h2>
+          </header>
+          <div class="stack">
+            <p>
+              Uma missão só vale depois de passar por duas camadas: a autochecagem e a revisão de um colega.
+              Critérios objetivos (número de fontes, contraste 4,5:1, distância entre rótulo e campo) reduzem a
+              subjetividade.
+            </p>
+            <ol class="steps">
+              <li>
+                <div>
+                  <strong>Autochecagem</strong>
+                  O participante confere o próprio checklist da missão.
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Revisão por par</strong>
+                  Um colega confere os mesmos critérios. Aprovou: as figurinhas são liberadas e o revisor ganha 30 XP.
+                  Reprovou: devolve com um comentário, e o participante tenta de novo sem perder XP.
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Figurinha especial</strong>
+                  Opcionalmente validada pelo professor, no papel de Diretor de Criação.
+                </div>
+              </li>
+            </ol>
+            <div>
+              <p class="pull">Errar não tira pontos.</p>
+              <p>Refazer é parte do processo de design, e punir a falha desestimula a experimentação.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+  <section class="field" style="padding-block:clamp(40px,5vw,72px)">
+    <div class="wrap">
+      <a class="btn" href="/proposta/entrega">Próxima: implementação e entrega →</a>
+    </div>
+  </section>
+
+
+  <script>
+    import '../../scripts/proposta';
+  </script>
+</Base>

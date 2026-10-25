@@ -1,0 +1,366 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-24T13:15:37Z",
+  "title": "Design System: Missão CRAP",
+  "extensions": {
+    "colorMeta": {
+      "cyan-ink": {
+        "role": "primary",
+        "displayName": "Process Cyan (P)",
+        "canonical": "oklch(67% 0.142 234)",
+        "tonalRamp": [
+          "#00043c",
+          "#00295f",
+          "#004c84",
+          "#0070aa",
+          "#0095d1",
+          "#37bbfa",
+          "#66e3ff",
+          "#83feff"
+        ]
+      },
+      "magenta-ink": {
+        "role": "secondary",
+        "displayName": "Process Magenta (A)",
+        "canonical": "oklch(60% 0.242 359)",
+        "tonalRamp": [
+          "#420009",
+          "#6d0024",
+          "#990042",
+          "#c40063",
+          "#f12086",
+          "#ff56ab",
+          "#ff81d1",
+          "#ff9deb"
+        ]
+      },
+      "yellow-ink": {
+        "role": "tertiary",
+        "displayName": "Process Yellow (R)",
+        "canonical": "oklch(88% 0.181 94)",
+        "tonalRamp": [
+          "#220000",
+          "#431a00",
+          "#653c00",
+          "#885f00",
+          "#ad8300",
+          "#d4a900",
+          "#fbd000",
+          "#ffeb3c"
+        ]
+      },
+      "black-ink": {
+        "role": "neutral",
+        "displayName": "K Black (C)",
+        "canonical": "oklch(18% 0.007 78)",
+        "tonalRamp": [
+          "#0d0b08",
+          "#282623",
+          "#474541",
+          "#686662",
+          "#8b8985",
+          "#b0ada9",
+          "#d7d4cf",
+          "#f1eee9"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "oklch(39% 0.009 81)",
+        "tonalRamp": [
+          "#0d0b07",
+          "#292621",
+          "#484540",
+          "#696660",
+          "#8c8983",
+          "#b1ada7",
+          "#d7d4ce",
+          "#f2eee8"
+        ]
+      },
+      "uncoated-white": {
+        "role": "neutral",
+        "displayName": "Uncoated White",
+        "canonical": "oklch(96% 0.005 106)",
+        "tonalRamp": [
+          "#0b0b09",
+          "#272724",
+          "#454542",
+          "#666663",
+          "#898986",
+          "#aeaeaa",
+          "#d4d4d0",
+          "#efefeb"
+        ]
+      },
+      "uncoated-white-shade": {
+        "role": "neutral",
+        "displayName": "Uncoated White Shade",
+        "canonical": "oklch(93% 0.008 107)",
+        "tonalRamp": [
+          "#0b0b08",
+          "#272722",
+          "#454540",
+          "#666661",
+          "#898984",
+          "#aeaea9",
+          "#d5d5cf",
+          "#efefe9"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The H1 MISSÃO CRAP at poster scale, Archivo wdth 125 / 850. One use per page."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section H2, Archivo wdth 112 / 800."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "H3, buttons, tabs and brand lockup, Archivo 700."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text in Source Serif 4, 1.0625rem / 1.6, max 68ch."
+      },
+      "label": {
+        "displayName": "Label / Slug",
+        "purpose": "Press slug lines, plate states, table heads and tags in Spline Sans Mono, uppercase, 0.06em tracked."
+      }
+    },
+    "shadows": [
+      {
+        "name": "proof-sheet",
+        "value": "0 1px 0 var(--rule), 0 10px 24px -12px color-mix(in oklab, var(--ink) 45%, transparent)",
+        "purpose": "Hero artwork sheet resting on the page."
+      },
+      {
+        "name": "sticker",
+        "value": "0 2px 0 rgb(20 18 15 / 0.35), 0 8px 16px -8px rgb(20 18 15 / 0.45)",
+        "purpose": "Glued sticker on the album page."
+      },
+      {
+        "name": "toast",
+        "value": "0 10px 24px -8px color-mix(in oklab, var(--ink) 40%, transparent)",
+        "purpose": "The single fixed overlay."
+      },
+      {
+        "name": "misregistration-ghost-0",
+        "value": "drop-shadow(0.7cqw 0 0 rgb(0 163 224 / 0.6)) drop-shadow(-0.7cqw 0 0 rgb(238 42 142 / 0.55))",
+        "purpose": "Stage 0 (broken): cyan and magenta ghosts at full offset. Stages 1 to 4 use 0.52, 0.34, 0.17 and 0 cqw with falling alpha."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Single easing for layout correction, sticker glue, check ticks and press feedback."
+      },
+      {
+        "name": "control",
+        "value": "0.18s to 0.2s",
+        "purpose": "Button and tab color transitions."
+      },
+      {
+        "name": "plate-ink",
+        "value": "0.35s",
+        "purpose": "Plate patch opacity when a plate registers."
+      },
+      {
+        "name": "layout-correction",
+        "value": "0.8s",
+        "purpose": "Position, size and type changes of the live layout between stages."
+      },
+      {
+        "name": "ghost-collapse",
+        "value": "0.9s",
+        "purpose": "Cyan and magenta ghost offsets collapsing as a stage registers."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "transitions removed on layout and shine animation; smooth scroll off",
+        "purpose": "prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "nav-collapse",
+        "value": "1040px"
+      },
+      {
+        "name": "bench",
+        "value": "1100px"
+      },
+      {
+        "name": "three-up",
+        "value": "960px"
+      },
+      {
+        "name": "hero",
+        "value": "900px"
+      },
+      {
+        "name": "before-after",
+        "value": "860px"
+      },
+      {
+        "name": "tables-album",
+        "value": "700px"
+      },
+      {
+        "name": "plate-names",
+        "value": "520px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Black square button; inverts on hover. Main action (cumprir a missão).",
+      "html": "<a class=\"ds-btn\" href=\"#\">Cumprir a missão 1.P</a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 20px;font-family:var(--f-display,'Archivo Variable',system-ui,sans-serif);font-weight:700;font-size:.95rem;background:var(--ink,#14120f);color:var(--paper,#f3f3ef);border:2px solid var(--ink,#14120f);border-radius:0;text-decoration:none;cursor:pointer;transition:background .18s,color .18s,transform .18s cubic-bezier(.16,1,.3,1)} .ds-btn:hover{background:var(--paper,#f3f3ef);color:var(--ink,#14120f)} .ds-btn:active{transform:translateY(1px)} .ds-btn:focus-visible{outline:3px solid currentColor;outline-offset:3px}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Outlined secondary action; fills black on hover.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Ler a proposta</a>",
+      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;min-height:46px;padding:0 20px;font-family:var(--f-display,'Archivo Variable',system-ui,sans-serif);font-weight:700;font-size:.95rem;background:transparent;color:var(--ink,#14120f);border:2px solid currentColor;border-radius:0;text-decoration:none;cursor:pointer;transition:background .18s,color .18s} .ds-btn-ghost:hover{background:var(--ink,#14120f);color:var(--paper,#f3f3ef);border-color:var(--ink,#14120f)} .ds-btn-ghost:focus-visible{outline:3px solid currentColor;outline-offset:3px}"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Sticky 56px paper bar with registration-target wordmark, section links and the yellow XP chip.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"7.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><circle cx=\"12\" cy=\"12\" r=\"3\" fill=\"currentColor\"/><path d=\"M12 0v24M0 12h24\" stroke=\"currentColor\" stroke-width=\"1.5\"/></svg><span>Missão CRAP</span></a><a class=\"ds-link\" href=\"#\">Visão geral</a><a class=\"ds-link\" href=\"#\">Missões</a><a class=\"ds-link\" href=\"#\">Álbum</a><a class=\"ds-chip\" href=\"#\"><span>Nível 1</span><span class=\"ds-chip-s\">0 XP</span></a></header>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:24px;height:56px;padding:0 20px;background:var(--paper,#f3f3ef);color:var(--ink,#14120f);border-bottom:1px solid var(--ink,#14120f)} .ds-brand{display:flex;align-items:center;gap:10px;font-family:var(--f-display,'Archivo Variable',system-ui,sans-serif);font-stretch:120%;font-weight:800;font-size:1.05rem;letter-spacing:-.01em;color:inherit;text-decoration:none;white-space:nowrap} .ds-link{font-family:var(--f-display,'Archivo Variable',system-ui,sans-serif);font-weight:600;font-size:.86rem;color:inherit;text-decoration:none;padding:6px 2px;border-bottom:2px solid transparent} .ds-link:hover{border-bottom-color:var(--ink,#14120f)} .ds-link:focus-visible,.ds-brand:focus-visible,.ds-chip:focus-visible{outline:3px solid currentColor;outline-offset:3px} .ds-chip{margin-left:auto;display:inline-flex;align-items:center;gap:10px;padding:7px 12px;border:1px solid var(--ink,#14120f);background:var(--y,#ffd400);color:var(--ink,#14120f);font-family:var(--f-display,'Archivo Variable',system-ui,sans-serif);font-weight:700;font-size:.82rem;text-decoration:none;transition:background .2s} .ds-chip:hover{background:var(--paper,#f3f3ef)} .ds-chip-s{font-family:var(--f-mono,'Spline Sans Mono Variable',ui-monospace,monospace);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase}"
+    },
+    {
+      "name": "Plate Buttons",
+      "kind": "chip",
+      "refersTo": "plate-button",
+      "description": "Segmented control that steps the proof sheet through Antes, P, A, R, C; the active plate fills black.",
+      "html": "<div class=\"ds-plates\" role=\"group\"><button type=\"button\"><i style=\"--p:repeating-linear-gradient(135deg,#14120f 0 2px,transparent 2px 6px)\"></i><span>—</span><span class=\"ds-s\">Antes</span></button><button type=\"button\"><i style=\"--p:var(--c,#00a3e0)\"></i><span>P</span><span class=\"ds-s\">Proximidade</span></button><button type=\"button\" aria-pressed=\"true\" class=\"on\"><i style=\"--p:var(--m,#ee2a8e)\"></i><span>A</span><span class=\"ds-s\">Alinhamento</span></button><button type=\"button\"><i style=\"--p:var(--y,#ffd400)\"></i><span>R</span><span class=\"ds-s\">Repetição</span></button><button type=\"button\"><i style=\"--p:var(--k,#14120f)\"></i><span>C</span><span class=\"ds-s\">Contraste</span></button></div>",
+      "css": ".ds-plates{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--ink,#14120f);background:var(--paper,#f3f3ef);max-width:560px} .ds-plates button{appearance:none;background:transparent;border:0;border-right:1px solid var(--ink,#14120f);padding:10px 6px 9px;cursor:pointer;font-family:var(--f-display,'Archivo Variable',system-ui,sans-serif);font-weight:700;font-size:.82rem;color:var(--ink,#14120f);display:grid;gap:6px;justify-items:center;transition:background .2s} .ds-plates button:last-child{border-right:0} .ds-plates i{display:block;width:100%;height:8px;background:var(--p);outline:1px solid rgba(20,18,15,.45);outline-offset:-1px;opacity:.28;transition:opacity .35s} .ds-plates button.on i{opacity:1} .ds-plates button[aria-pressed=true]{background:var(--ink,#14120f);color:var(--paper,#f3f3ef)} .ds-plates button:hover:not([aria-pressed=true]){background:var(--paper-2,#e9e9e3)} .ds-plates button:focus-visible{outline:3px solid currentColor;outline-offset:-3px} .ds-s{font-family:var(--f-mono,'Spline Sans Mono Variable',ui-monospace,monospace);font-weight:400;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;opacity:.8}"
+    },
+    {
+      "name": "Spec Table",
+      "kind": "custom",
+      "refersTo": "spec-table-head",
+      "description": "Hairline-ruled specification table: mono uppercase heads, display-weight row heads, optional yellow highlighted row.",
+      "html": "<table class=\"ds-spec\"><thead><tr><th>Missão</th><th>Critério</th><th>XP</th></tr></thead><tbody><tr><th scope=\"row\">1.P</th><td>Máximo de 3 grupos visuais</td><td>100</td></tr><tr class=\"on\"><th scope=\"row\">1.A</th><td>Uma única borda de alinhamento</td><td>100</td></tr></tbody></table>",
+      "css": ".ds-spec{width:100%;border-collapse:collapse;font-family:var(--f-text,'Source Serif 4 Variable',Georgia,serif);font-size:.98rem;line-height:1.5;color:var(--ink,#14120f)} .ds-spec th,.ds-spec td{text-align:left;vertical-align:top;padding:12px 16px 12px 0;border-bottom:1px solid rgba(20,18,15,.28);font-variant-numeric:tabular-nums} .ds-spec thead th{font-family:var(--f-mono,'Spline Sans Mono Variable',ui-monospace,monospace);font-weight:500;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;border-bottom:1px solid var(--ink,#14120f);padding-bottom:8px} .ds-spec tbody th{font-family:var(--f-display,'Archivo Variable',system-ui,sans-serif);font-weight:700;font-size:.95rem;white-space:nowrap} .ds-spec tr.on{background:var(--y,#ffd400)}"
+    },
+    {
+      "name": "Mission Ticket",
+      "kind": "card",
+      "refersTo": "ticket",
+      "description": "Job ticket for the active mission: paper panel with scalloped edges, checklist, reward and actions, on the black field.",
+      "html": "<div class=\"ds-field\"><div class=\"ds-ticket\"><span class=\"ds-slug\">Missão 1.P · Flyer</span><h3>Aproximar o que é parente</h3><p class=\"ds-brief\">Reduza as manchas: agrupe o que pertence junto.</p><span class=\"ds-slug ds-label\">Critérios</span><ul class=\"ds-checks\"><li><label><input type=\"checkbox\" checked><span>No máximo 3 grupos visuais</span></label></li><li><label><input type=\"checkbox\"><span>Espaço entre grupos maior que dentro deles</span></label></li></ul><p class=\"ds-status ok\">Validada. 125 XP ganhos.</p><div class=\"ds-actions\"><a class=\"ds-btn\" href=\"#\">Enviar para revisão</a></div></div></div>",
+      "css": ".ds-field{background:var(--ink,#14120f);padding:32px 24px;color:var(--paper,#f3f3ef)} .ds-ticket{position:relative;background:var(--paper,#f3f3ef);color:var(--ink,#14120f);padding:22px 24px 26px;max-width:460px;font-family:var(--f-text,'Source Serif 4 Variable',Georgia,serif)} .ds-ticket::before,.ds-ticket::after{content:'';position:absolute;left:0;right:0;height:8px;background:radial-gradient(circle at 8px 0,transparent 5px,var(--paper,#f3f3ef) 5.5px) 0 0/16px 8px repeat-x} .ds-ticket::before{top:-8px;transform:scaleY(-1)} .ds-ticket::after{bottom:-8px} .ds-ticket h3{font-family:var(--f-display,'Archivo Variable',system-ui,sans-serif);font-stretch:112%;font-weight:800;font-size:1.5rem;line-height:1.15;letter-spacing:-.01em;margin:8px 0 12px} .ds-brief{font-size:1.1rem;font-style:italic;margin:0 0 18px} .ds-slug{font-family:var(--f-mono,'Spline Sans Mono Variable',ui-monospace,monospace);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase} .ds-label{display:block;margin:18px 0 8px;color:var(--ink-2,#47443f)} .ds-checks{list-style:none;margin:0;padding:0} .ds-checks label{display:grid;grid-template-columns:22px 1fr;gap:12px;padding:8px 0;cursor:pointer;line-height:1.4} .ds-checks input{appearance:none;width:22px;height:22px;margin:1px 0 0;border:2px solid var(--ink,#14120f);border-radius:0;background:var(--paper,#f3f3ef);display:grid;place-content:center;cursor:pointer} .ds-checks input::after{content:'';width:12px;height:12px;background:var(--ink,#14120f);clip-path:polygon(14% 44%,0 65%,50% 100%,100% 16%,80% 0,43% 62%);transform:scale(0);transition:transform .2s cubic-bezier(.16,1,.3,1)} .ds-checks input:checked::after{transform:scale(1)} .ds-checks input:focus-visible{outline:3px solid currentColor;outline-offset:3px} .ds-status{margin:16px 0 0;padding:12px 14px;background:var(--y,#ffd400);font-size:.97rem} .ds-status.ok{background:var(--c,#00a3e0)} .ds-actions{display:flex;gap:10px;margin-top:22px} .ds-btn{display:inline-flex;align-items:center;min-height:46px;padding:0 20px;font-family:var(--f-display,'Archivo Variable',system-ui,sans-serif);font-weight:700;font-size:.95rem;background:var(--ink,#14120f);color:var(--paper,#f3f3ef);border:2px solid var(--ink,#14120f);border-radius:0;text-decoration:none} .ds-btn:hover{background:var(--paper,#f3f3ef);color:var(--ink,#14120f)}"
+    },
+    {
+      "name": "Album Slot and Sticker Pair",
+      "kind": "card",
+      "refersTo": "sticker",
+      "description": "Before/after sticker pair with corner tags and a caption field; empty slots are dashed.",
+      "html": "<div class=\"ds-slot\"><h4 class=\"ds-slot-h\">1.P Proximidade</h4><div class=\"ds-pair\"><div class=\"ds-stk\"><span class=\"ds-tag\">Antes</span></div><div class=\"ds-stk\"><span class=\"ds-tag\">Depois</span></div></div><div class=\"ds-pair empty\"><div class=\"ds-stk\"><span class=\"ds-tag\">Antes</span></div><div class=\"ds-stk\"><span class=\"ds-tag\">Depois</span></div></div></div>",
+      "css": ".ds-slot{display:grid;gap:10px;max-width:300px;color:var(--ink,#14120f)} .ds-slot-h{margin:0;font-family:var(--f-display,'Archivo Variable',system-ui,sans-serif);font-weight:700;font-size:1rem;line-height:1.2} .ds-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:end} .ds-stk{position:relative;aspect-ratio:3/4;background:var(--paper,#f3f3ef);border:3px solid var(--paper,#f3f3ef);box-shadow:0 2px 0 rgba(20,18,15,.35),0 8px 16px -8px rgba(20,18,15,.45);transform:rotate(-1.2deg);transform-origin:50% 100%;outline:1px solid rgba(20,18,15,.2)} .ds-stk:nth-child(2){transform:rotate(1deg)} .ds-tag{position:absolute;left:4px;bottom:4px;background:var(--ink,#14120f);color:var(--paper,#f3f3ef);padding:1px 5px;font-family:var(--f-mono,'Spline Sans Mono Variable',ui-monospace,monospace);font-size:.56rem;letter-spacing:.06em;text-transform:uppercase} .ds-pair.empty .ds-stk{background:transparent;border:2px dashed var(--ink,#14120f);box-shadow:none;transform:none;outline:0} .ds-pair.empty .ds-tag{background:transparent;color:var(--ink,#14120f);border:1px solid var(--ink,#14120f)}"
+    },
+    {
+      "name": "Callout Numerals",
+      "kind": "custom",
+      "refersTo": "callout-numeral",
+      "description": "Numbered circles, filled with each principle's ink, tying a planted problem to its place on the layout.",
+      "html": "<ol class=\"ds-callouts\"><li><span class=\"ds-num\" style=\"--p:var(--c,#00a3e0)\">1</span><span>Quatro grupos de texto sem relação visível</span></li><li class=\"hot\"><span class=\"ds-num\" style=\"--p:var(--m,#ee2a8e)\">2</span><span>Três alinhamentos diferentes<span class=\"ds-why\">Alinhamento</span></span></li><li><span class=\"ds-num\" style=\"--p:var(--y,#ffd400)\">3</span><span>Cinco fontes</span></li><li><span class=\"ds-num\" style=\"--p:#14120f;color:#f3f3ef\">4</span><span>Texto cinza sobre branco</span></li></ol>",
+      "css": ".ds-callouts{list-style:none;margin:0;padding:0;max-width:380px;color:var(--ink,#14120f);font-family:var(--f-text,'Source Serif 4 Variable',Georgia,serif);font-size:.97rem;line-height:1.4} .ds-callouts li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;padding:9px 0;border-top:1px solid rgba(20,18,15,.28)} .ds-callouts li:last-child{border-bottom:1px solid rgba(20,18,15,.28)} .ds-callouts li.hot{background:var(--y,#ffd400)} .ds-num{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--p,var(--ink,#14120f));color:var(--ink,#14120f);border:1.5px solid var(--ink,#14120f);font-family:var(--f-display,'Archivo Variable',system-ui,sans-serif);font-weight:800;font-size:.74rem;line-height:1;font-variant-numeric:tabular-nums} .ds-why{display:block;margin-top:2px;font-family:var(--f-mono,'Spline Sans Mono Variable',ui-monospace,monospace);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2,#47443f)}"
+    },
+    {
+      "name": "Color-bar",
+      "kind": "custom",
+      "refersTo": "color-bar",
+      "description": "The four process inks as patches; used as footer strip and as the collective progress bar.",
+      "html": "<div class=\"ds-bar\"><i class=\"c\"></i><i class=\"m\"></i><i class=\"y\"></i><i class=\"k\"></i></div><p class=\"ds-slug ds-bar-cap\">87 de 120 figurinhas coladas</p><div class=\"ds-bar ds-prog\"><i class=\"c\" style=\"width:40%\"></i><i class=\"m\" style=\"width:20%\"></i><i class=\"y\" style=\"width:12%\"></i></div>",
+      "css": ".ds-bar{display:flex;height:12px;width:100%;max-width:420px} .ds-bar i{flex:1;display:block} .ds-bar .c{background:var(--c,#00a3e0)} .ds-bar .m{background:var(--m,#ee2a8e)} .ds-bar .y{background:var(--y,#ffd400)} .ds-bar .k{background:var(--k,#14120f)} .ds-bar-cap{font-family:var(--f-mono,'Spline Sans Mono Variable',ui-monospace,monospace);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;margin:18px 0 6px;color:var(--ink,#14120f)} .ds-prog{height:18px;border:1px solid var(--ink,#14120f);background:var(--paper-2,#e9e9e3);overflow:hidden} .ds-prog i{flex:none}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Proof Sheet",
+    "overview": "The page is a pre-press proof sheet and job ticket. Neutral uncoated white stock carries black ink for all reading, and four flat ink fields at page scale (cyan, magenta, yellow, black) are the sections, one per CRAP principle in spirit: P is cyan, A is magenta, R is yellow, C is black. A broken layout is a misregistered print: its cyan and magenta ghosts sit offset from the black image and collapse into register as each mission is completed. The print shop is the native vocabulary of the audience (design students), so every device is borrowed from it and used for what it does there: crop marks frame a thing that will be trimmed, a registration target marks the brand and the end of a loop, a color-bar measures progress, mono slug lines label a job.\n\nDensity is editorial and calm. Sections are long, wide-margined and flat; reading sections pair a sticky title column with a measured text column, and the interface recedes around the layouts being repaired. Depth is the paper itself. The system refuses the gamified-landing-page default: no card grids of icon plus heading, no gradients, no glow, no rounded friendly surfaces.\n\nThe build has no raster assets. Every mark, target, bar, sticker, badge and layout artwork is CSS, inline SVG, or live text; the three broken layouts are authored synthetic illustration generated from data, not participant work.",
+    "keyCharacteristics": [
+      "Four process inks as the only chromatic colors, always flat, always carrying black text.",
+      "Square corners everywhere; the only curves are circles (numerals, badges, registration target).",
+      "Black rules, 1px for structure and 2px for emphasis, instead of shadows or fills, to separate things.",
+      "Crop marks, registration target, color-bar and mono slug lines as recurring furniture.",
+      "Misregistration ghosts (cyan and magenta offsets) as the single motion-and-state device on artwork.",
+      "Archivo variable expanded for display, Source Serif 4 for reading, Spline Sans Mono for slugs and measurements only."
+    ],
+    "rules": [
+      {
+        "name": "The Flat Ink Rule",
+        "body": "Every ink is applied as a solid field at 100%: no gradients, no tints, no opacity blends of an ink to make a new color. The only partial inks are the ghost offsets and the unlit state of an unfinished plate (opacity 0.28).",
+        "section": "colors"
+      },
+      {
+        "name": "The Black On Ink Rule",
+        "body": "Text on cyan, magenta and yellow fields is K black, never white. On the K field text is Uncoated White. The same pair logic applies to numerals and status boxes.",
+        "section": "colors"
+      },
+      {
+        "name": "The Four Plates Rule",
+        "body": "Cyan is always P, magenta A, yellow R, black C. A principle never borrows another's ink; a new element that needs a color takes the ink of the principle it belongs to.",
+        "section": "colors"
+      },
+      {
+        "name": "The Slug Only Rule",
+        "body": "The monospace appears only as the press speaking: job numbers, plate states, table headers, measurements and tags. It never sets a sentence of reading text and never sits above a heading as a decorative label; slugs sit under, beside or inside the thing they describe.",
+        "section": "typography"
+      },
+      {
+        "name": "The Expanded Voice Rule",
+        "body": "Display and headings use the expanded width axis and heavy weights with tight tracking. Narrow or default-width Archivo is for small UI (nav links 0.86rem / 600, tabs), not for headings.",
+        "section": "typography"
+      },
+      {
+        "name": "The Loose Paper Rule",
+        "body": "A shadow is allowed only on an object that is a separate sheet or sticker sitting on the page (proof sheet, sticker, toast). Sections, buttons, tables, plates and cards never cast one.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Registration Rule",
+        "body": "Misregistration is the only decorative effect on artwork and it always means \"not yet corrected\". It never appears as ornament once a layout is at stage 4.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do apply the four inks as flat full-saturation fields and patches: cyan #00a3e0 for P, magenta #ee2a8e for A, yellow #ffd400 for R, K #14120f for C.",
+      "Do set text on cyan, magenta and yellow in K black and text on the K field in uncoated white (#f3f3ef).",
+      "Do keep every corner square (0px); reserve circles for numerals, badges, markers and the registration target.",
+      "Do separate content with black rules: 1px for structure, 28% hairlines for rows, 2px for controls and emphasis.",
+      "Do frame an artwork or sheet with crop marks (20px offset, 12px by 1px) and let slug lines in Spline Sans Mono, uppercase, 0.06em tracked, name the job, plate or measurement.",
+      "Do use Archivo at wdth 112 to 125 and weight 800 to 850 for headings and Source Serif 4 at 1.0625rem and 1.6 for reading, capped near 68ch.",
+      "Do show unfinished things dashed and earned things solid, and show not-yet-corrected artwork through cyan and magenta ghost offsets.",
+      "Do move with cubic-bezier(0.16, 1, 0.3, 1) (about 0.18s for controls, 0.8s for layout correction) and honor prefers-reduced-motion by dropping transitions and the shine animation.",
+      "Do keep controls at 44 to 46px minimum height with a 3px currentColor focus outline.",
+      "Do verify new ink-on-text pairs against 4.5:1 for body copy before shipping."
+    ],
+    "donts": [
+      "Don't round surfaces, add soft shadows to sections, buttons or tables, or use gradients to make depth; shadows are reserved for loose paper (proof sheet, sticker, toast).",
+      "Don't build card grids of icon plus heading; use ruled lists, tables, tickets and fields.",
+      "Don't tint or blend the inks (no pastel, no lighter cyan for a background); partial states are the 28% unlit plate patch and the ghost alphas only.",
+      "Don't set white text on a process ink, or put Soft Ink (#47443f) on a colored field.",
+      "Don't set sentences in the monospace or use it as a decorative label above headings; it is for slugs, headers and measurements.",
+      "Don't use narrow or default-width Archivo for headings, or a system or script face outside the broken-layout artwork (the script and mono faces inside the artwork are deliberate planted errors).",
+      "Don't invent a fifth chromatic color or give a principle another principle's ink.",
+      "Don't punish retries visually: no red failure states, no loss animations; a returned review is a magenta status line saying no XP was lost, nothing more.",
+      "Don't ship raster imagery; marks, targets, bars, stickers and artwork stay CSS, SVG or live text."
+    ]
+  }
+}

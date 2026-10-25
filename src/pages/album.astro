@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+import { LAYOUT_INFO, PRINCIPLES, missionsOf, type LayoutId } from '../data/content';
+
+const layoutIds: LayoutId[] = ['flyer', 'login', 'product'];
+---
+
+<Base title="Álbum — CRAP Design" current="album">
+  <section class="field field-y page-head" aria-labelledby="h-album">
+    <div class="wrap">
+      <div class="ph-grid">
+        <div>
+          <h1 id="h-album">Seu álbum</h1>
+          <p class="lead">Seu antes e depois, missão a missão.</p>
+        </div>
+        <div class="cover">
+          <label>
+            <span class="slug">Capa · nome do participante</span>
+            <input type="text" data-name placeholder="Seu nome" maxlength="40" autocomplete="off" />
+          </label>
+          <div class="meta">
+            <span>Nível <span data-cover-level>1</span> · <span data-cover-title>Estagiário</span></span>
+            <span><span data-cover-xp>0</span> XP</span>
+            <span><span data-cover-count>0</span> de 24 figurinhas comuns</span>
+          </div>
+          <div class="colorbar fill" aria-hidden="true" data-cover-bar><i class="c"></i><i class="m"></i><i class="y"></i><i class="k"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="field field-y" style="padding-top:0">
+    <div class="wrap">
+      <div class="album-tabs" role="tablist" aria-label="Páginas do álbum">
+        {
+          layoutIds.map((id, i) => (
+            <button type="button" role="tab" data-album-tab={id} aria-selected={i === 0 ? 'true' : 'false'}>
+              {LAYOUT_INFO[id].n}. {LAYOUT_INFO[id].name.split(' (')[0]}
+            </button>
+          ))
+        }
+        <button type="button" role="tab" data-album-tab="hall" aria-selected="false">Hall da Fama</button>
+      </div>
+
+      {
+        layoutIds.map((id, idx) => (
+          <div class="album-page" data-album-page={id} data-on={idx === 0 ? '' : undefined}>
+            <header>
+              <h2>
+                {LAYOUT_INFO[id].n}. {LAYOUT_INFO[id].name}
+              </h2>
+              <span class="slug">4 pares + 1 figurinha especial</span>
+            </header>
+            <div class="slots">
+              {missionsOf(id).map((m) => (
+                <div class="slot" data-slot={m.id}>
+                  <h3 class="slot-h">
+                    <span class="patch" data-ink={PRINCIPLES[m.p].ink} />
+                    <a href={`/missoes/${m.id.replace('.', '-')}`}>
+                      {m.id} · {m.name}
+                    </a>
+                  </h3>
+                  <div class="stickers">
+                    <div class="stk" data-side="before"><span class="tag slug">Antes</span></div>
+                    <div class="stk" data-side="after"><span class="tag slug">Depois</span></div>
+                  </div>
+                  <label class="cap-label">
+                    <span class="slug">O que mudou e por quê</span>
+                    <textarea data-caption={m.id} disabled placeholder="Libera quando a missão for validada."></textarea>
+                  </label>
+                </div>
+              ))}
+              <div class="slot special" data-slot={`special-${id}`}>
+                <h3 class="slot-h">Especial · {LAYOUT_INFO[id].special}</h3>
+                <div class="stickers">
+                  <div class="stk" data-side="before"><span class="tag slug">Original</span></div>
+                  <div class="stk" data-side="after"><span class="tag slug">Redesign</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+
+      <div class="album-page" data-album-page="hall">
+        <header>
+          <h2>Hall da Fama</h2>
+          <span class="slug">Badges conquistados</span>
+        </header>
+        <div class="hall" data-hall></div>
+        <p class="quiet" data-hall-empty style="margin-top:12px">Nenhum badge ainda.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    import '../scripts/album';
+  </script>
+</Base>

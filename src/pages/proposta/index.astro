@@ -1,0 +1,186 @@
+---
+import Base from '../../layouts/Base.astro';
+import Layout from '../../components/Layout.astro';
+import Spec from '../../components/Spec.astro';
+import PropostaNav from '../../components/PropostaNav.astro';
+import { LAYOUTS } from '../../data/layouts';
+import {
+  LAYOUT_INFO,
+  LEVELS,
+  PLANTED,
+  PRINCIPLES,
+  missionsOf,
+  type LayoutId,
+} from '../../data/content';
+
+const layoutIds: LayoutId[] = ['flyer', 'login', 'product'];
+const flyerMissions = missionsOf('flyer');
+void Layout; void LAYOUTS; void LAYOUT_INFO; void LEVELS; void PLANTED; void PRINCIPLES; void flyerMissions; void layoutIds;
+---
+
+<Base title="Proposta: a ideia — CRAP Design" current="proposta">
+  <section class="field page-head" aria-labelledby="h-prop">
+    <div class="wrap">
+      <div class="ph-grid">
+        <div>
+          <h1 id="h-prop">Proposta: a ideia</h1>
+          <p class="lead">A ideia, a jornada e a teoria.</p>
+        </div>
+      </div>
+      <PropostaNav current="ideia" />
+    </div>
+  </section>
+
+      <section class="field" id="visao" aria-labelledby="h-visao">
+        <div class="wrap read">
+          <header>
+            <h2 id="h-visao">Visão geral</h2>
+          </header>
+          <div class="stack">
+            <div>
+              <p>
+                CRAP Design é uma oficina gamificada. Cada participante conserta layouts quebrados cumprindo uma
+                missão por princípio (Proximidade, Alinhamento, Repetição, Contraste). A cada missão validada, ganha
+                XP, um badge e um par de figurinhas, o <strong>antes</strong> e o <strong>depois</strong>, que cola
+                lado a lado num álbum.
+              </p>
+              <p>
+                A atividade é gamificação, não jogo: usa elementos de design de jogos num contexto que não é jogo
+                (Deterding et al., 2011). A tarefa continua sendo trabalho de design real; as mecânicas só
+                estruturam e motivam.
+              </p>
+            </div>
+
+            <div class="pair-table">
+              <div>
+                <h3>É gamificação porque</h3>
+                <ul>
+                  <li>Missões, XP, níveis e badges organizam a progressão</li>
+                  <li>A validação dá feedback imediato</li>
+                  <li>O álbum dá sentido de coleção e conclusão</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Não é jogo porque</h3>
+                <ul>
+                  <li>Ninguém ganha nem perde; não há adversário</li>
+                  <li>Não há mundo fictício, personagens ou regras de vitória</li>
+                  <li>O produto final é um portfólio de redesigns utilizáveis</li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <h3 style="margin-bottom:14px">Objetivos de aprendizagem</h3>
+              <p>Ao final da oficina, o participante consegue:</p>
+              <ol class="goals">
+                <li>Identificar violações de cada princípio CRAP num layout real.</li>
+                <li>Aplicar cada princípio isoladamente e perceber o efeito de cada um.</li>
+                <li>Combinar os quatro princípios num redesign coerente.</li>
+                <li>Justificar decisões de design com o vocabulário CRAP.</li>
+                <li>Comparar antes e depois de forma crítica, usando o álbum como evidência.</li>
+              </ol>
+            </div>
+
+            <div>
+              <h3 style="margin-bottom:14px">Formato</h3>
+              <p>
+                A proposta é uma sessão de cerca de 90 minutos, individual ou em duplas. Os números abaixo são um
+                ponto de partida para calibrar no piloto.
+              </p>
+              <Spec
+                caption="Formato da oficina"
+                head={['Item', 'Proposta']}
+                rows={[
+                  ['Público', 'Iniciantes em UI/UX (graduação em design ou computação, ou a própria turma do mestrado)'],
+                  ['Participantes', '6 a 30 pessoas, individual ou em duplas'],
+                  ['Duração', '~90 min: 10 de briefing, 60 de missões, 20 de álbum e debate'],
+                  ['Ferramenta', 'Figma/FigJam (digital) ou papel (analógico), ver Implementação'],
+                  ['Materiais', '3 layouts quebrados, 12 cartões de missão, ficha de XP, álbum e figurinhas'],
+                ]}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="field field-c" id="jornada" aria-labelledby="h-jornada">
+        <div class="wrap">
+          <div class="bench-head" style="margin-bottom:clamp(28px,3vw,44px)">
+            <h2 id="h-jornada">Jornada da experiência</h2>
+            <p>
+              O ciclo central é curto: missão, validação, recompensa e colagem. Ele se repete 4 vezes por layout e
+              12 vezes na oficina inteira, e a figurinha especial marca o fim de cada layout.
+            </p>
+          </div>
+          <ol class="loop">
+            <li>
+              <h3>Missão</h3>
+              <p>Cartão com briefing, critérios de conclusão e dica opcional.</p>
+              <span class="slug">Participante</span>
+            </li>
+            <li>
+              <h3>Validação</h3>
+              <p>Autochecagem do checklist, depois revisão de um colega.</p>
+              <span class="slug">Dupla</span>
+            </li>
+            <li>
+              <h3>Recompensa</h3>
+              <p>XP, progresso no badge do princípio e o par de figurinhas.</p>
+              <span class="slug">Sistema</span>
+            </li>
+            <li>
+              <h3>Colagem</h3>
+              <p>Antes à esquerda, depois à direita, e uma linha: o que mudou e por quê.</p>
+              <span class="slug">Álbum</span>
+            </li>
+          </ol>
+          <p class="loop-return">
+            <span class="reg-wrap"><svg class="reg" aria-hidden="true"><use href="#reg"></use></svg></span>
+            <strong>Volta ao início:</strong> 4× por layout · 12× na oficina ·
+            <span class="sp">figurinha especial ao fechar cada layout</span>
+          </p>
+        </div>
+      </section>
+
+      <section class="field" id="teoria" aria-labelledby="h-teoria" style="padding-top:0">
+        <div class="wrap">
+          <div class="bench-head" style="margin-bottom:clamp(24px,3vw,40px)">
+            <h2 id="h-teoria">Fundamentação teórica</h2>
+            <p>
+              Cada mecânica responde a uma das três necessidades da Teoria da Autodeterminação (Ryan &amp; Deci, 2000):
+              competência, autonomia e pertencimento. Pontos, badges e níveis seguem o conjunto clássico de elementos
+              de gamificação descrito por Werbach &amp; Hunter (2012).
+            </p>
+          </div>
+          <div class="stack">
+            <Spec
+              caption="Elementos de gamificação e necessidades atendidas"
+              head={['Elemento', 'Necessidade atendida', 'Por que motiva']}
+              rows={[
+                ['Missões com checklist', 'Competência', 'Metas claras e alcançáveis, uma de cada vez'],
+                ['Validação imediata', 'Competência', 'O participante sabe na hora se acertou e o que falta'],
+                ['XP e níveis', 'Competência', 'O progresso fica visível'],
+                ['Badges por princípio', 'Competência', 'Reconhece domínio de cada princípio separadamente'],
+                ['Dica opcional e solução livre', 'Autonomia', 'Não há resposta única; o participante decide como resolver'],
+                ['Legenda “o que mudou e por quê”', 'Autonomia', 'A justificativa é dele, com as próprias palavras'],
+                ['Revisão por par e barra coletiva', 'Pertencimento', 'A turma progride junta; ajudar o colega também rende XP'],
+                ['Álbum antes/depois', 'Competência', 'Evidência concreta da própria evolução'],
+              ]}
+            />
+            <p>
+              <strong>Risco conhecido e como a proposta evita:</strong> recompensas externas podem esvaziar a motivação
+              quando estão desconectadas da tarefa. Aqui, a recompensa principal (as figurinhas) é o próprio trabalho de
+              design do participante, então recompensa e aprendizado são a mesma coisa.
+            </p>
+          </div>
+        </div>
+      </section>
+
+  <section class="field" style="padding-block:clamp(40px,5vw,72px)">
+    <div class="wrap">
+      <a class="btn" href="/proposta/atividade">Próxima: a atividade →</a>
+    </div>
+  </section>
+
+</Base>

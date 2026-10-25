@@ -1,0 +1,132 @@
+---
+import Base from '../../layouts/Base.astro';
+import { LAYOUT_INFO, MISSIONS, PRINCIPLES, XP_RULES, type Mission } from '../../data/content';
+
+export function getStaticPaths() {
+  return MISSIONS.map((m) => ({ params: { id: m.id.replace('.', '-') }, props: { m } }));
+}
+
+const { m } = Astro.props as { m: Mission };
+const i = MISSIONS.indexOf(m);
+const prev = MISSIONS[i - 1];
+const next = MISSIONS[i + 1];
+const slug = (x: Mission) => x.id.replace('.', '-');
+const ink = PRINCIPLES[m.p].ink;
+const field = { c: 'field-c', m: 'field-m', y: 'field-y', k: 'field-k' }[ink];
+const info = LAYOUT_INFO[m.layout];
+---
+
+<Base title={`${m.id} · ${m.name} — CRAP Design`} current="missoes" mission={m.id}>
+  <section class:list={['field', 'page-head', 'compact', field]} aria-labelledby="h-m">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Você está aqui">
+        <a href="/missoes">Missões</a> / <span>{info.name}</span> / <span aria-current="page">{PRINCIPLES[m.p].name}</span>
+        {m.draft && <span class="draft-flag" title="Critérios derivados da tabela de problemas plantados; calibrar no piloto">rascunho</span>}
+      </nav>
+      <h1 id="h-m">{m.id} · {m.name}</h1>
+      <p class="lead brief">“{m.briefing}”</p>
+    </div>
+  </section>
+
+  <section class="field work" style="padding-top:clamp(20px,3vw,40px)">
+    <div class="wrap">
+      <p class="status" data-lock hidden></p>
+
+      <div class="work-grid">
+        <aside class="work-tools" aria-label="Ferramentas">
+          <div data-bar></div>
+        </aside>
+
+        <div class="work-canvas">
+          <div class="view-bar">
+            <span class="slug">Tela de edição</span>
+            <div data-view></div>
+          </div>
+          <div class="canvas-area">
+            <div class="canvas-wrap">
+              <div class="trim">
+                <div class="sheet" data-canvas></div>
+              </div>
+            </div>
+          </div>
+          <noscript><p class="status">Ligue o JavaScript para editar o layout.</p></noscript>
+        </div>
+
+        <aside class="work-side" aria-label="Critérios e ações">
+          <div class="temp" data-temp>
+            <div class="temp-head">
+              <span class="slug">Frio ↔ quente</span>
+              <strong data-temp-label>Gelado</strong>
+            </div>
+            <div class="temp-track" aria-hidden="true"><i style="--t:0"></i></div>
+          </div>
+
+          <h2 class="crit-h">Pronto quando</h2>
+          <ul class="crit-list" data-goals>
+            {m.short.map((g) => (
+              <li>
+                <span class="goal-mark" aria-hidden="true"></span>
+                <span class="goal-text">{g}</span>
+                <span class="crit-bar" aria-hidden="true"><i style="--t:0"></i></span>
+                <span class="sr-only" data-goal-state>pendente</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="actions">
+            <button type="button" class="btn" data-send disabled>Enviar para revisão</button>
+            <button type="button" class="btn" data-approve hidden>Colega aprovou</button>
+            <button type="button" class="btn ghost" data-return hidden>Colega devolveu</button>
+          </div>
+          <p class="status" data-status hidden></p>
+
+          <div class="side-extra">
+            <div class="mini-pair">
+              <figure>
+                <div class="mini" data-before></div>
+                <figcaption class="slug">Antes</figcaption>
+              </figure>
+              <figure data-example hidden>
+                <div class="mini" data-example-sheet></div>
+                <figcaption class="slug">Exemplo</figcaption>
+              </figure>
+            </div>
+            <button type="button" class="link-btn" data-hint>Dica e exemplo (perde +{XP_RULES.noHint} XP)</button>
+            <p class="hint-text" data-hint-text hidden>{PRINCIPLES[m.p].hint}</p>
+          </div>
+        </aside>
+      </div>
+
+      <section class="reward" data-reward hidden aria-labelledby="h-reward">
+        <h2 id="h-reward">Missão validada</h2>
+        <p class="reward-line" data-reward-text></p>
+        <div class="slot" data-filled>
+          <h3 class="slot-h"><span class="patch" data-ink={ink}></span>Sua figurinha · {m.id}</h3>
+          <div class="stickers">
+            <div class="stk" data-stk-before><span class="tag slug">Antes</span></div>
+            <div class="stk" data-stk-after><span class="tag slug">Depois</span></div>
+          </div>
+          <label class="cap-label">
+            <span class="slug">O que mudou e por quê</span>
+            <textarea data-caption placeholder="Uma linha, com suas palavras."></textarea>
+          </label>
+        </div>
+        <p class="status ok" data-special-msg hidden></p>
+        <div class="actions">
+          {next && <a class="btn" href={`/missoes/${slug(next)}`}>Próxima: {next.id}</a>}
+          <a class="btn ghost" href="/album">Álbum</a>
+        </div>
+      </section>
+
+      <nav class="mnav" aria-label="Outras missões">
+        {prev ? <a href={`/missoes/${slug(prev)}`}>← {prev.id}</a> : <span></span>}
+        <a href="/missoes">Mapa</a>
+        {next ? <a href={`/missoes/${slug(next)}`}>{next.id} →</a> : <span></span>}
+      </nav>
+    </div>
+  </section>
+
+  <script>
+    import '../../scripts/mission';
+  </script>
+</Base>

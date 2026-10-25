@@ -1,0 +1,39 @@
+---
+/** Tabela de especificação. Em telas estreitas cada linha vira um bloco rotulado. */
+interface Props {
+  head: string[];
+  rows: (string | string[])[][];
+  caption?: string;
+  class?: string;
+  rowAttr?: (i: number) => Record<string, string>;
+}
+const { head, rows, caption, class: cls, rowAttr } = Astro.props;
+---
+
+<table class:list={['spec', cls]}>
+  {caption && <caption class="sr-only">{caption}</caption>}
+  <thead>
+    <tr>{head.map((h) => <th scope="col">{h}</th>)}</tr>
+  </thead>
+  <tbody>
+    {
+      rows.map((r, i) => (
+        <tr {...(rowAttr ? rowAttr(i) : {})}>
+          {r.map((c, j) =>
+            j === 0 ? (
+              <th scope="row" data-label={head[j]}>{c}</th>
+            ) : (
+              <td data-label={head[j]}>
+                {Array.isArray(c) ? (
+                  <ul>{c.map((li) => <li>{li}</li>)}</ul>
+                ) : (
+                  c
+                )}
+              </td>
+            ),
+          )}
+        </tr>
+      ))
+    }
+  </tbody>
+</table>

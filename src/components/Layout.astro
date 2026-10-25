@@ -1,0 +1,26 @@
+---
+import { LAYOUTS, styleOf, type Stage } from '../data/layouts';
+
+interface Props {
+  id: 'flyer' | 'login' | 'product';
+  stage?: Stage;
+  label?: string;
+  class?: string;
+}
+const { id, stage = 0, label, class: cls } = Astro.props;
+const spec = LAYOUTS[id];
+---
+
+<div
+  class:list={['lay', cls]}
+  data-layout={id}
+  data-stage={stage}
+  style={`aspect-ratio:${spec.w}/${spec.h};background-color:${spec.bg}`}
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+>
+  <div class="lay-in">
+    {spec.els.map((el) => <div class="el" data-id={el.id} style={styleOf(el, stage)}>{el.text}</div>)}
+  </div>
+</div>

@@ -1,0 +1,116 @@
+---
+import Base from '../../layouts/Base.astro';
+import Layout from '../../components/Layout.astro';
+import Spec from '../../components/Spec.astro';
+import PropostaNav from '../../components/PropostaNav.astro';
+import { LAYOUTS } from '../../data/layouts';
+import {
+  LAYOUT_INFO,
+  LEVELS,
+  PLANTED,
+  PRINCIPLES,
+  missionsOf,
+  type LayoutId,
+} from '../../data/content';
+
+const layoutIds: LayoutId[] = ['flyer', 'login', 'product'];
+const flyerMissions = missionsOf('flyer');
+void Layout; void LAYOUTS; void LAYOUT_INFO; void LEVELS; void PLANTED; void PRINCIPLES; void flyerMissions; void layoutIds;
+---
+
+<Base title="Proposta: implementação e entrega — CRAP Design" current="proposta">
+  <section class="field page-head" aria-labelledby="h-prop">
+    <div class="wrap">
+      <div class="ph-grid">
+        <div>
+          <h1 id="h-prop">Proposta: implementação e entrega</h1>
+          <p class="lead">Implementação, medição, pontos em aberto e referências.</p>
+        </div>
+      </div>
+      <PropostaNav current="entrega" />
+    </div>
+  </section>
+
+      <section class="field" id="implementacao" aria-labelledby="h-impl" style="padding-top:0">
+        <div class="wrap">
+          <div class="bench-head" style="margin-bottom:clamp(24px,3vw,40px)">
+            <div>
+              <h2 id="h-impl">Implementação e avaliação</h2>
+              <p class="slug" style="margin-top:14px;color:var(--ink-2)">Esta página é a versão “protótipo web”</p>
+            </div>
+            <p>
+              A versão em Figma/FigJam é a mais simples de montar; um protótipo web é a que mais impressiona. Um ponto
+              de atenção: o “depois” de cada figurinha é o trabalho do próprio participante, então a versão 100% em
+              papel exige imprimir ou fotografar cada etapa.
+            </p>
+          </div>
+          <div class="stack">
+            <div>
+              <h3 style="margin-bottom:14px">Versões possíveis</h3>
+              <Spec
+                caption="Versões de implementação"
+                head={['Versão', 'Como funciona', 'Vantagem', 'Limitação']}
+                rows={[
+                  ['Figma/FigJam', 'Layouts como frames; o participante duplica o frame a cada missão; o álbum é um frame com espaços travados', 'Custo zero, rápido de montar', 'Colagem manual das figurinhas'],
+                  ['Protótipo web', 'App que gera as figurinhas a partir de cada etapa e controla XP, badges e álbum', 'Mais imersivo e demonstrável', 'Mais tempo de desenvolvimento'],
+                  ['Híbrida', 'Trabalho no Figma; álbum impresso no fim com as figurinhas exportadas', 'O álbum físico vira lembrança', 'Etapa extra de impressão'],
+                  ['Papel', 'Layouts recortados, montados à mão e fotografados a cada missão', 'Tátil e memorável', 'Mais lento; depende de foto ou impressão'],
+                ]}
+              />
+            </div>
+            <div>
+              <h3 style="margin-bottom:14px">Como medir se funcionou</h3>
+              <ul class="fields-list">
+                <li><strong>Aprendizagem</strong><span>pré e pós-teste: identificar violações CRAP em layouts novos</span></li>
+                <li><strong>Motivação</strong><span>questionário IMI (Intrinsic Motivation Inventory) ao final</span></li>
+                <li><strong>Qualidade da reflexão</strong><span>análise das legendas “o que mudou e por quê” do álbum</span></li>
+                <li><strong>Opcional</strong><span>grupo controle fazendo as mesmas missões sem a camada gamificada</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="field field-m" id="abertas" aria-labelledby="h-abertas">
+        <div class="wrap read">
+          <header>
+            <h2 id="h-abertas">Decisões em aberto</h2>
+            <p class="slug">Marcado na prova, ainda sem aprovação</p>
+          </header>
+          <div>
+            <ul class="open-list">
+              <li><span>Formato de entrega do trabalho: apresentação, protótipo ou artigo?</span></li>
+              <li><span>Versão de implementação: Figma, protótipo web, híbrida ou papel?</span></li>
+              <li><span>Placar individual ou só progresso coletivo?</span></li>
+              <li><span>Ordem das missões fixa (P → A → R → C) ou livre?</span></li>
+              <li><span>Nome final da atividade</span></li>
+            </ul>
+            <div class="assume">
+              <p>
+                <strong>O que esta versão web assumiu para funcionar.</strong> Ordem fixa P → A → R → C (a da
+                proposta), só progresso coletivo (sem placar individual) e o nome CRAP Design. As missões do login e da
+                página de produto estão marcadas como rascunho: os critérios foram derivados da tabela de problemas
+                plantados e precisam ser calibrados no piloto.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="field field-k" id="referencias" aria-labelledby="h-refs" style="padding-block:clamp(56px,8vw,110px)">
+        <div class="wrap read">
+          <header>
+            <h2 id="h-refs">Referências</h2>
+            <p class="slug">Citadas de memória; confira edição e páginas antes de submeter.</p>
+          </header>
+          <ul class="refs">
+            <li>DETERDING, S.; DIXON, D.; KHALED, R.; NACKE, L. From game design elements to gamefulness: defining “gamification”. <i>MindTrek ’11</i>, 2011.</li>
+            <li>WILLIAMS, R. <i>The Non-Designer’s Design Book</i>. 4. ed. Peachpit Press, 2014.</li>
+            <li>RYAN, R. M.; DECI, E. L. Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being. <i>American Psychologist</i>, v. 55, n. 1, 2000.</li>
+            <li>WERBACH, K.; HUNTER, D. <i>For the Win: How Game Thinking Can Revolutionize Your Business</i>. Wharton Digital Press, 2012.</li>
+            <li>McAULEY, E.; DUNCAN, T.; TAMMEN, V. V. Psychometric properties of the Intrinsic Motivation Inventory in a competitive sport setting. <i>Research Quarterly for Exercise and Sport</i>, v. 60, n. 1, 1989.</li>
+          </ul>
+        </div>
+      </section>
+
+</Base>

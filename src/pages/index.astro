@@ -1,0 +1,139 @@
+---
+import Base from '../layouts/Base.astro';
+import Layout from '../components/Layout.astro';
+import { ORDER, PRINCIPLES } from '../data/content';
+
+const stageLabels = ['Antes', ...ORDER.map((p) => PRINCIPLES[p].name)];
+---
+
+<Base title="CRAP Design — do caos ao layout" current="home">
+  <section class="hero" aria-labelledby="h-hero">
+    <div class="wrap">
+      <div>
+        <h1 id="h-hero"><span>CRAP</span><span>Design</span></h1>
+        <p class="lead">Conserte layouts quebrados, um princípio por vez. Ganhe XP, badges e figurinhas do antes e depois.</p>
+        <div class="cta-row">
+          <a class="btn" href="/missoes/1-P" data-continue>Começar pela missão 1.P</a>
+          <a class="btn ghost" href="/proposta">Ler a proposta</a>
+        </div>
+        <p class="slug hero-facts d" data-home-summary>
+          ~90 min · 6 a 30 pessoas · Figma, web ou papel<br />
+          3 layouts quebrados · 12 missões · 1 álbum
+        </p>
+      </div>
+
+      <div class="proof">
+        <div class="trim sheet-wrap">
+          <div class="sheet">
+            <Layout id="flyer" stage={0} label="Flyer de evento sendo corrigido missão a missão" class="hero-lay" />
+          </div>
+        </div>
+        <div class="proof-ctl">
+          <div class="plates" role="group" aria-label="Missões do flyer: ver o layout em cada etapa">
+            {
+              stageLabels.map((l, i) => (
+                <button
+                  type="button"
+                  data-hero-stage={i}
+                  data-ink={i === 0 ? '0' : PRINCIPLES[ORDER[i - 1]].ink}
+                  aria-pressed={i === 0 ? 'true' : 'false'}
+                >
+                  <i></i>
+                  <span>{i === 0 ? '—' : ORDER[i - 1]}</span>
+                  <span class="slug nm">{l}</span>
+                </button>
+              ))
+            }
+          </div>
+          <div class="crit" data-hero-cap aria-live="polite">
+            <strong>Flyer quebrado.</strong> Toque nas placas: cada missão corrige um princípio.
+          </div>
+          <div class="proof-slug slug">
+            <span>OS 001 · Flyer de evento</span>
+            <span data-hero-slug>0/4 placas em registro</span>
+          </div>
+          <p class="slug hero-facts m">
+            ~90 min · 6 a 30 pessoas · Figma, web ou papel<br />
+            3 layouts quebrados · 12 missões · 1 álbum
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="field" aria-labelledby="h-como" style="padding-top:0">
+    <div class="wrap read">
+      <header>
+        <h2 id="h-como">Como usar</h2>
+      </header>
+      <div class="stack">
+        <ol class="steps">
+          <li>
+            <div>
+              <strong>Escolha uma missão</strong>
+              12 no total, em 3 layouts.
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Conserte no site</strong>
+              Arraste, alinhe, estilize. Os critérios se marcam sozinhos.
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Peça revisão</strong>
+              Um colega confere. Devolveu? Refaça, sem perder XP.
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Cole no álbum</strong>
+              XP, badge e o par antes/depois.
+            </div>
+          </li>
+        </ol>
+        <div class="cta-row">
+          <a class="btn" href="/missoes/1-P" data-continue>Começar pela missão 1.P</a>
+          <a class="btn ghost" href="/missoes">Ver todas as missões</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="field field-c" aria-labelledby="h-gates">
+    <div class="wrap">
+      <h2 id="h-gates" class="sr-only">Para onde ir</h2>
+      <ul class="gates">
+        <li>
+          <a href="/missoes">
+            <b>Missões</b>
+            <span>As 12 missões</span>
+          </a>
+        </li>
+        <li>
+          <a href="/album">
+            <b>Álbum</b>
+            <span>Seu antes e depois</span>
+          </a>
+        </li>
+        <li>
+          <a href="/progresso">
+            <b>Progresso</b>
+            <span>XP, níveis e badges</span>
+          </a>
+        </li>
+        <li>
+          <a href="/proposta">
+            <b>Proposta</b>
+            <span>O texto completo</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <script>
+    import '../scripts/home';
+  </script>
+</Base>
